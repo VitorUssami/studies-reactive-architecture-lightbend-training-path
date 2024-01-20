@@ -59,3 +59,53 @@
 - Provides Loose coupling, isolation, location transparency
 - Resources are consumed only while active
 
+
+
+### The Actor Model
+
+- The actor model is a programming paradigm that supports construction of Reactive Systems
+- It's Message Driven
+    - all communications between actors is done by non blocking messages
+- Abstractions provide Elasticity and Resilience
+    - location transparency
+- It can be used to build Responsive software
+- On the JVM:
+    - Akka implements actions model
+
+
+#### Fundamental concepts of the Actor Model
+
+- All computation occurs inside of Actors
+- Each actor has an address
+- Actors communicate only through asynchronous messages
+
+
+#### Location Transparency
+
+![](/images/01/location-transparency.png)
+
+- The Message driven nature of Actors supports location transparency
+- Actors communicate using the same technique, regardless of location
+- Local vs Remote is mostly configuration
+- Location transparency enables actors to be both Resilient and Elastic
+
+#### Importance of the Actor Model
+
+- There are many reactive programming tools
+- You often have to combine different technologies to build a reactive system
+- The actor model provides facilities to support all of the reactive principles
+    - message driven by default
+    - location transparency to support elasticity and resilience through distribution
+    - elasticity and resilience provides Responsiveness
+
+#### Reactive systems without actors
+
+![](/images/01/rs-without-actors.png)
+
+- It's possible to have reactive systems WITHOUT using actors
+- Component are added on rather then being built in
+- Requires additional infrastructure such as
+    - service registry
+    - load balancer
+    - message bus
+- Result will be a reactive at a large scale, not necessarily the small
