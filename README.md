@@ -25,7 +25,7 @@
 ### Chapters:
 
 - [Reactive Architecture: Introduction to Reactive](/01-introduction-to-reactive.md)
-- Reactive Architecture: Domain Driven Design
+- [Reactive Architecture: Domain Driven Design](/02-domain-driven-design.md)
 - Reactive Architecture: Reactive Microservices
 - Reactive Architecture: Building Scalable Systems
 - Reactive Architecture: Distributed Messaging Patterns
