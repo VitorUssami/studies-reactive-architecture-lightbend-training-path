@@ -83,7 +83,7 @@ We also need to observe how the details of the model change.
     - an awkward workflow may signal a misunderstanding of the domain
     - if a bounded context has too many dependencies it may be overcomplicated. You may have drawn your lines incorrectly. That's an area where you want to explore in a little more detail and try and figure out if you've done something wrong
 
-### Event First Domain Driven Design
+#### Event First Domain Driven Design
 
 Traditionally domain driven design focused on the objects within the domain.
 
@@ -94,3 +94,41 @@ In more recent times the techniques have evolved a little bit and now we talked 
 > e.g: "Customer makes a reservation", "Server places an order", "Food is served to the customer"
 
 Using event first domain driven design we start by defining the activities, then group those activities to find logical system boundaries. The technique called "event storming" may help you to find those events.
+
+### Maintaining Purity
+
+Once we've separated our bounded context into nice clean boundaries we have a bit of a job ahead of us which is maintaining those clear boundaries, maintaining the purity of those bounded contexts.
+
+There are some techniques that allow us to do that.
+
+#### Anti-Corruption Layer (ACL)
+
+![](/images/02/acl.png)
+
+- Each bounded context may have domain concepts that are unique
+- Concepts are not always compatible from one context to the next
+- Anti-Corruption Layers are introduced to translate these concepts
+- An Anti-Corruption Layer will prevent Bounded Contexts from leaking into each other.
+- Anti-Corruption Layer help the bounded context to stand alone
+
+
+How is that anti-corruption layer implemented? A common way to implement it is as an abstract interface. The abstract interface represents sort of a pure domain representation of the data. Then we have implementation of that interface which does the necessary translation.
+
+#### Anti-Corruption for Legacy System
+
+![](/images/02/acl-legacy.png)
+
+- Sometimes you have to interface with a legacy system
+- The domain of legacy system may be messy or unclear
+- An Anti-Corruption Layer keeps your bounded context pure. It prevents your domain from having to deal with that mess
+- It prevents your domain from dealing with the mess og the legacy system
+- Anti-Corruption Layer may be implemented in the Legacy System, or in the bounded context (or both)
+
+#### Context Maps
+
+![](/images/02/context-maps.png)
+
+- Context Maps are a way of visualizing Bounded Contexts and the relationships between them
+- Bounded Contexts are drawn as simple shapes
+- Lines connect the Bounded COntexts to indicate relationships
+- Lines may be labelled to indicate the nature of the relationship
