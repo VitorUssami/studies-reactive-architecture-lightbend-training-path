@@ -107,6 +107,18 @@ The subject represents whoever is doing  a particular action/activity. The verb 
 
 When defining these activities, it is important to think about how the business would operate in the absence of software. We want to be careful not to allow the implementation of the software, to leak into our domain model.
 
+#### Direct vs Indirect Objects
+
+When we're using Subject-Verb-Object notation sometimes we get into a
+situation where it seems like maybe there's more than one object in the
+sentence. 
+
+> e.g.: Bartender collects Payment for a Drink Order
+
+In that case the subjects clear, that's the bartender. The verb is collect but then we have payment for a drink order. Is payment the object? Or is the order the object? That's where it becomes unclear.
+
+The truth is that they both represent objects in the sentence. There's what's called a **direct object** which is our payment. And there's an
+**indirect object** which is our drink order.
 
 ### Maintaining Purity
 
