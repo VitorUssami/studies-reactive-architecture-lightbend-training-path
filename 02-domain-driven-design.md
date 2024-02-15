@@ -95,6 +95,19 @@ In more recent times the techniques have evolved a little bit and now we talked 
 
 Using event first domain driven design we start by defining the activities, then group those activities to find logical system boundaries. The technique called "event storming" may help you to find those events.
 
+#### Subject-Verb-Object Notation
+
+The purpose of this notation is to give us a consistent way to phrase our activities or our events in the domain.
+
+> e.g.: Hosts checks current reservations
+>
+> Our **subject** is "Host", our **verb** is "checks" and our **object** is "Reservation". We have the subject first, the object last, and then the verb in the middle.
+
+The subject represents whoever is doing  a particular action/activity. The verb is the action being done. The object is the target of that action.
+
+When defining these activities, it is important to think about how the business would operate in the absence of software. We want to be careful not to allow the implementation of the software, to leak into our domain model.
+
+
 ### Maintaining Purity
 
 Once we've separated our bounded context into nice clean boundaries we have a bit of a job ahead of us which is maintaining those clear boundaries, maintaining the purity of those bounded contexts.
