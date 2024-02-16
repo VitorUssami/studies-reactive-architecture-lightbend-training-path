@@ -214,3 +214,15 @@ In a reactive system, the commands, events and queries represent the messages.
  
 They basically form the API of a bounded context or a microservice.
 
+#### Ubiquitous Language To Code
+
+As we begin to flesh out the bounded context, we're going to need to define activities for that context. When we define those activities, one of the things that we're going to want to do is we're gonna want to focus on the ubiquitous language. 
+
+So we're going to use terms that you would find when speaking to the domain experts and we will express these activities.
+
+However when we translate those activities into code we're gonna want to
+maintain that same language.
+
+For example, if we have an activity such as "Open an Order." This is a command that gets issued in the domain. When we translate that command into code we are going to name the class or object that represents the command using the ubiquitous language. So it would get translated into something like "OpenOrder."
+
+"OpenOrder" is the name of the class that represents the "Open an Order" command that we found in the domain.
