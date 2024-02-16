@@ -95,7 +95,7 @@ In more recent times the techniques have evolved a little bit and now we talked 
 
 Using event first domain driven design we start by defining the activities, then group those activities to find logical system boundaries. The technique called "event storming" may help you to find those events.
 
-#### Subject-Verb-Object Notation
+##### Subject-Verb-Object Notation
 
 The purpose of this notation is to give us a consistent way to phrase our activities or our events in the domain.
 
@@ -107,7 +107,7 @@ The subject represents whoever is doing  a particular action/activity. The verb 
 
 When defining these activities, it is important to think about how the business would operate in the absence of software. We want to be careful not to allow the implementation of the software, to leak into our domain model.
 
-#### Direct vs Indirect Objects
+##### Direct vs Indirect Objects
 
 When we're using Subject-Verb-Object notation sometimes we get into a
 situation where it seems like maybe there's more than one object in the
@@ -120,13 +120,13 @@ In that case the subjects clear, that's the bartender. The verb is collect but t
 The truth is that they both represent objects in the sentence. There's what's called a **direct object** which is our payment. And there's an
 **indirect object** which is our drink order.
 
-### Maintaining Purity
+#### Maintaining Purity
 
 Once we've separated our bounded context into nice clean boundaries we have a bit of a job ahead of us which is maintaining those clear boundaries, maintaining the purity of those bounded contexts.
 
 There are some techniques that allow us to do that.
 
-#### Anti-Corruption Layer (ACL)
+##### Anti-Corruption Layer (ACL)
 
 ![](/images/02/acl.png)
 
@@ -139,7 +139,7 @@ There are some techniques that allow us to do that.
 
 How is that anti-corruption layer implemented? A common way to implement it is as an abstract interface. The abstract interface represents sort of a pure domain representation of the data. Then we have implementation of that interface which does the necessary translation.
 
-#### Anti-Corruption for Legacy System
+##### Anti-Corruption for Legacy System
 
 ![](/images/02/acl-legacy.png)
 
@@ -149,7 +149,7 @@ How is that anti-corruption layer implemented? A common way to implement it is a
 - It prevents your domain from dealing with the mess og the legacy system
 - Anti-Corruption Layer may be implemented in the Legacy System, or in the bounded context (or both)
 
-#### Context Maps
+###### Context Maps
 
 ![](/images/02/context-maps.png)
 
@@ -157,3 +157,60 @@ How is that anti-corruption layer implemented? A common way to implement it is a
 - Bounded Contexts are drawn as simple shapes
 - Lines connect the Bounded COntexts to indicate relationships
 - Lines may be labelled to indicate the nature of the relationship
+
+### Domain Building Blocks
+
+#### Domain Activities
+
+##### Commands
+
+A command is a type of activity that occurs in the domain. It represents a request to perform an action. The action has not yet happened and it can be rejected.
+
+ Commands are typically delivered to a specific destination. And it causes a change to the state of the domain. After the command has been completed, the domain won't be in the same state that it was prior to issuing that command.
+
+> e.g.: Add an item to an order, pay a bill, prepare a meal
+
+Those are all requests to perform an action.
+
+##### Events
+
+Events are another activity in the domain. An event is an activity that occurs in the domain but now it represents an action that happened in the past. 
+
+Because the action already completed, they can not be rejected. You can choose to ignore it. You can choose to do nothing with it. But you can't say that it never happened. 
+
+Events are often broadcast to many  destinations.
+
+An event records a change to the state of the domain. Often the result of a command.
+
+> e.g.: An item was added to an order, A bill was paid, a meal was prepared
+
+Events are always worded as past tense. You can see that it's an event.
+
+Again the critical thing here is that events happened in the past. They are indisputable. You cannot argue with the
+fact that it has already happened.
+
+##### Queries
+
+Queries are the final type of activity in the domain. They represent a request for information about the domain.
+
+Because they are a query, a response is always expected. It's usually delivered to a specific destination.
+
+Queries should not alter the state of the domain.
+
+> e.g.: Ge the details of an order, check if a bill has been paid.
+
+##### Commands, Events and Queries in reactive systems
+
+![](/images/02/commands-evts-queries.png)
+
+> Commands: Make a reservation
+>
+> Events: Reservation made
+>
+> Queries: Get reservation
+
+
+In a reactive system, the commands, events and queries represent the messages.
+ 
+They basically form the API of a bounded context or a microservice.
+
