@@ -272,5 +272,27 @@ context?
 - Will a single transaction span multiple entities?
 
 
+#### Object-Field Notation
 
+As we continue with our analysis of the Orders context, our next step is to determine what objects are present. This usually involves looking at the Commands, Events, and Queries that we defined previously and determining what information we will need in our Bounded Context order to execute them.
+
+We will continue to move our representation of these things to look more like code. Our objects will be represented using the following notation:
+
+_Object(fields)_
+
+Based on this you will be able to see which fields make up an individual object. For example:
+
+_Order(orderId, orderItems, tableNumber, serverId)_
+
+Here you can see that our Order object consists of the fields orderId, orderItems, tableNumber, and serverId
+
+We will represent more primitive objects by excluding their fields.
+
+_Primitive_
+
+For example we could have something like:
+
+_SpecialInstructions_
+
+This represents a primitive object that does not contain any special fields. In our code it would likely be represented by something like a string in this case.
 
