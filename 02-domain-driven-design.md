@@ -226,3 +226,51 @@ maintain that same language.
 For example, if we have an activity such as "Open an Order." This is a command that gets issued in the domain. When we translate that command into code we are going to name the class or object that represents the command using the ubiquitous language. So it would get translated into something like "OpenOrder."
 
 "OpenOrder" is the name of the class that represents the "Open an Order" command that we found in the domain.
+
+#### Domain Objects
+
+##### Values Objects
+
+![](/images/02/value-objects.png)
+
+A value object is defined by its attributes. Two value objects are equivalent if their attributes are the same.
+
+Value objects are immutable. In addition to state, value objects can contain business logic.
+
+##### Entities
+
+![](/images/02/entities.png)
+
+An entity is defined by a unique identity(i.e. an ID or a key). It may change its attributes, its mutable, but not its identity.
+
+If the identity changes, it is a new entity, regardless of its attributes.
+
+Entities are the single source of truth for a particular id. Entities can also contain business logic.
+
+##### Aggregates
+
+![](/images/02/aggregates.png)
+
+ An aggregate is a collection of domain objects bound to a root Entity. The root Entity is called the **Aggregate Root**.
+
+ Objects in an aggregate can be treated as a single unit. The access to objects in the aggregate must go though the Aggregate Root.
+
+ Transactions should not span multiple aggregate roots.
+
+ ##### Determining the aggregate roots
+
+ ![](/images/02/aggregates-01.png)
+
+ Choosing an aggregate root is not always straightforward. The aggregate root can be different from on context to the next.
+
+ Some context may require multiple aggregate roots. It's not common, it's far more common to see a single aggregate root per bounded context but it's not always the case.
+
+ So some questions to consider:
+ - Is the entity involved in most of the operations in that bounded
+context? 
+- If you delete the entity, does it require you to delete other entities?
+- Will a single transaction span multiple entities?
+
+
+
+
