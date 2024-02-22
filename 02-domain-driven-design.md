@@ -330,3 +330,24 @@ They often operate as abstraction layers over top of databases but they can also
 
 Factories and repositories are related. For this reason, they are often combined. A repository may end up with all of the Create, Read, Update, Delete operations. We don't
 bother with factories in that case.
+
+
+#### Hexagonal Architecture
+
+![](/images/02/hexagonal-architecture.png)
+
+A particular technique that is often combined with domain-driven design is called hexagonal architecture. Hexagonal architecture is not directly related to domain driven design. You can use domain driven design without using hexagonal architecture however it is very compatible with domain driven design. 
+
+It's also known as ports and adapters. It was the idea of ports and adapters and the
+hexagonal architecture was proposed by Alistair Cockburn. It's an alternative to the layered or n-tier architecture.
+
+The the idea here is that the domain is core. It is absolutely the most important thing in your application therefore it should be at the center. It becomes the architectural focus.
+
+Ports are exposed as an API for the domain. Infrastructure contains adapters that map to the ports.  And those adapters communicate with those ports, they communicate through
+that API. 
+
+![](/images/02/hexagonal-architecture-2.png)
+
+Here we've kind of combined the onion and the hexagon into a drawing. You see the domain at the center. Outside of that domain we have another layer which is the API, sometimes called the services layer. Then outside of that we have an infrastructure layer. 
+
+The idea here is the domain is the center of the onion, the API provides the ports and it's another layer, and then the infrastructure provides the adaptors which communicate with the ports. 
