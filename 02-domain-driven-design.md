@@ -350,4 +350,22 @@ that API.
 
 Here we've kind of combined the onion and the hexagon into a drawing. You see the domain at the center. Outside of that domain we have another layer which is the API, sometimes called the services layer. Then outside of that we have an infrastructure layer. 
 
-The idea here is the domain is the center of the onion, the API provides the ports and it's another layer, and then the infrastructure provides the adaptors which communicate with the ports. 
+The idea here is the domain is the center of the onion, the API provides the ports and it's another layer, and then the infrastructure provides the adaptors which communicate (in and out) with the ports. 
+
+The outer layers are allowed to depend on the inner layers but the reverse is not true. Inner layers have no knowledge of outer layers.
+
+Hexagonal architecture ensures a proper separation of infrastructure from domain. You can guarantee that the domain has no knowledge of the infrastructure. It doesn't know about the database. It doesn't know about the user interface. It doesn't know about any of those things because it's not allowed. Those rules prevent that so it prevents the concerns about databases, user interfaces, things like that, from bleeding into the domain.
+
+This can be enforced with packages, or even project structure in the application.
+
+What this does is it allows your domain to be portable. It means that it becomes
+much more easy to swap out pieces of your infrastructure without having to affect your domain.
+
+
+#### Domain Driven Design & Hexagonal Architecture Links
+
+- [Domain Driven Design: Tackling Complexity in the Heart of Software](https://domainlanguage.com/ddd/)
+- [DDD Reference](http://domainlanguage.com/ddd/reference/)
+- [Implementing Domain Driven Design](http://www.informit.com/store/implementing-domain-driven-design-9780133039894)
+- [Domain Driven Design Distilled](http://www.informit.com/store/domain-driven-design-distilled-9780134434988)
+- [Hexagonal Architecture](https://en.wikipedia.org/wiki/Hexagonal_architecture_(software))
