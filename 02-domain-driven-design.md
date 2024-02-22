@@ -296,3 +296,37 @@ _SpecialInstructions_
 
 This represents a primitive object that does not contain any special fields. In our code it would likely be represented by something like a string in this case.
 
+#### Domain Abstractions
+
+##### Services
+
+![](/images/02/services.png)
+
+Business logic doesn't always fit with an entity or value object. The logic can be encapsulated by a Service.
+
+Services have some special criteria: They should be stateless. And services are
+often used to abstract away something like an anti-corruption layer.
+
+It's important to note that creating systems that use too many services, it leads to an anemic domain. Look for a missing domain object before resorting to a service. Make sure that we're not missing an entity or a value object. What we don't want is we don't want
+services to be doing all the work. We want services to typically be fairly thin layers over a very specific piece of business logic rather than something that just does everything.
+
+##### Factories
+
+![](/images/02/factories.png)
+
+When we go to create a new domain object, often entities or aggregate roots, the logic to construct those domain objects may not be trivial. May require access to external resources (databases, files, rest api, etc).
+
+A factory allows us to abstract away that logic. It's again usually implemented as a domain interface with one or more concrete implementations.
+
+##### Repositories
+
+![](/images/02/repositories.png)
+
+Repositories are similar to factories but instead of abstracting away creation they abstract away the retrieving of existing objects. Factories are used to get new objects. Repositories are used to get or modify existing objects. 
+
+They often operate as abstraction layers over top of databases but they can also work with files, REST API, etc.
+
+> Note: A repository does not automatically imply a database.
+
+Factories and repositories are related. For this reason, they are often combined. A repository may end up with all of the Create, Read, Update, Delete operations. We don't
+bother with factories in that case.
